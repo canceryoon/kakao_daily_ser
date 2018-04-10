@@ -17,9 +17,11 @@ from django.conf.urls import url
 from django.contrib import admin
 from WeatherAlert.views import keyboard 
 from WeatherAlert.views import answer 
+from WeatherAlert.views import webhome 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^webhome/', webhome, name='webhome'),
     url(r'^keyboard/$', keyboard, name='keyboard'),
     url(r'^message', answer, name='answer'),
 ]

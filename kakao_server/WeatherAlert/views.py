@@ -10,11 +10,16 @@ import sys
 sys.path.insert(0, '/home/ubuntu/kakao_server/WeatherAlert')
 
 import myweather
+import mycoin
+import mybestsellers
+
+def webhome(request):
+    return render(request, 'webpage/home.html', {})
 
 def keyboard(request):
     return JsonResponse({
         'type': 'buttons',
-        'buttons' : ['날씨', '코인', '주식']
+        'buttons' : ['Weather', 'Coin', 'Books']
     })
 
 @csrf_exempt
@@ -23,22 +28,34 @@ def answer(request):
     received_json_data = json.loads(json_str)
     var_keyboard = received_json_data['content']
 
-    if var_keyboard == '날씨':
+    bookList = ["신간", "주목할 만한 신간", "편집자 추천", "베스트셀러"]
+    answer = ''
+
+    if len(var_keyboard) is 3 :
+        answer = mycoin.getCoinUpbit(var_keyboard);
+
+    elif var_keyboard == 'Weather':
         return JsonResponse(myweather.getaddr())
-    elif var_keyboard == '코인':
-        print('코인')
-    elif var_keyboard == '주식':
-        print('주식')
-    else:
-        return JsonResponse(myweather.getweather(var_keyboard))
+
+    elif var_keyboard == 'Coin':
+        return JsonResponse(mycoin.getCoinVal())
+
+    elif var_keyboard == 'Books':
+        return JsonResponse(mybestsellers.getListType())
+
+    elif var_keyboard in bookList:
+        answer = mybestsellers.getBestSellers(var_keyboard)
+
+    elif answer == '':
+        answer = myweather.getweather(var_keyboard)
 
     return JsonResponse({
             'message': {
-                'text': var_keyboard + ' 선택했습니다.'
+                'text': answer
             },
             'keyboard': {
                 'type': 'buttons',
-                'buttons' : ['날씨', '코인', '주식']
+                'buttons' : ['Weather', 'Coin', 'Books']
             }
 
         })

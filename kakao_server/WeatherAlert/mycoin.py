@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 def getCoinVal():
     return ({
             'message': {
-                'text': '코인 종류를 선택하십시오'
+                'text': 'Choose a coin type.'
              },
              'keyboard': {
                  'type': 'buttons',
@@ -13,17 +13,16 @@ def getCoinVal():
              }
            })
 
-def getCoinUpbit():
+def getCoinUpbit(coin):
     coinHdr = {'Content-Type': 'application/json; charset=utf-8', 'user-agent' : 'my-upbit-coin'}
+    coinUrl = 'https://crix-api-endpoint.upbit.com/v1/crix/candles/minutes/1?code=CRIX.UPBIT.KRW-' + coin +'&count=1&to='
+    req = requests.get(coinUrl, headers=coinHdr).json()
+    tradeT = req[0]["candleDateTimeKst"]
+    tradeDate = tradeT.split('T', 1)[0]
+    tradeTime = tradeT.split('T', 1)[1][:5]
+    
+    tPrice = str(req[0]["tradePrice"])
+    hPrice = str(req[0]["highPrice"])
+    lPrice = str(req[0]["lowPrice"])
 
-    req = requests.get('https://crix-api-endpoint.upbit.com/v1/crix/candles/minutes/1?code=CRIX.UPBIT.KRW-ADA&count=3&to=', headers=coinHdr).json()
-
-    print(req)
-    print(req[0])
-    print(req[0]["tradePrice"])
-    print(req[1]["tradePrice"])
-    print(req[2]["tradePrice"])
-
-#soup = BeautifulSoup(html, 'html.parser')
-#print(soup)
-
+    return ( 'Trading Time: \n' + tradeDate + ' ' + tradeTime + '\n' + coin + ' High Price: ' +  hPrice + 'won\n' + coin + ' Low Price: ' + lPrice + 'won\n' + coin + ' Price: ' + tPrice + 'won')
