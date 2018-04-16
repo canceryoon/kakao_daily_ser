@@ -8,7 +8,7 @@ def getListType():
             'message':  { 'text': 'Choose a List Type.' },
             'keyboard': {
                 'type': 'buttons',
-                'buttons': ['신간', '주목할 만한 신간', '편집자 추천', '베스트셀러']
+                'buttons': ['신간', '주목할 만한 신간', '베스트셀러']
             } 
            })
 
@@ -16,8 +16,8 @@ def getBestSellers(listType):
     bookHdr = {'Content-Type': 'application/json; charset=utf-8', 'user-agent' : 'my-book-aladin'}
     bookUrl = 'http://www.aladin.co.kr/ttb/api/ItemList.aspx'
     bkey = 'ttbphoto96091009001'
-    bookList = ["신간", "주목할 만한 신간", "편집자 추천", "베스트셀러"]
-    bookListQT = ["ItemNewAll", "ItemNewSpecial", "ItemEditorChoice", "Bestseller"]
+    bookList = ["신간", "주목할 만한 신간", "베스트셀러"]
+    bookListQT = ["ItemNewAll", "ItemNewSpecial", "Bestseller"]
     queryType = bookListQT[bookList.index(listType)]
 
     bparams = {"ttbkey": bkey, "SearchTarget": "Book", "QueryType": queryType, "output": "JS", "Version": "20131101", "MaxResults": "5"}

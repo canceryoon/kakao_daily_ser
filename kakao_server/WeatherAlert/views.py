@@ -28,7 +28,7 @@ def answer(request):
     received_json_data = json.loads(json_str)
     var_keyboard = received_json_data['content']
 
-    bookList = ["신간", "주목할 만한 신간", "편집자 추천", "베스트셀러"]
+    bookList = ["신간", "주목할 만한 신간", "베스트셀러"]
     answer = ''
 
     if len(var_keyboard) is 3 :

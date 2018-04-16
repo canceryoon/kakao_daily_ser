@@ -9,7 +9,8 @@ def getCoinVal():
              },
              'keyboard': {
                  'type': 'buttons',
-                 'buttons' : ['BTC', 'ADA', 'SNT', 'ETH']
+                 'buttons' : ['BTC', 'BCC', 'ETH', 'DASH', 'ZEC', 'XMR', 'LTC', 'NEO', 'BTG', 'REP', 'ETC', 'QTUM', 'OMG', 'LSK', 'EOS', 'PIVX', 'STRAT', 'WAVES', 'MTL', 'KMD', 'ARK', 'ICX', 'VTC', 'SBD', 'STEEM', 'STORJ', 'GRS', 'XRP', 'TIX', 'POWR', 'ARDR', 'XEM', 'XLM', 'MER', 'EMC2', 'ADA', 'SNT', 'TRX', 'STORM']
+
              }
            })
 
