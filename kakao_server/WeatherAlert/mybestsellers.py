@@ -15,7 +15,7 @@ def getListType():
 def getBestSellers(listType):
     bookHdr = {'Content-Type': 'application/json; charset=utf-8', 'user-agent' : 'my-book-aladin'}
     bookUrl = 'http://www.aladin.co.kr/ttb/api/ItemList.aspx'
-    bkey = 'ttbphoto96091009001'
+    bkey = YOUR_TTBKEY
     bookList = ["신간", "주목할 만한 신간", "베스트셀러"]
     bookListQT = ["ItemNewAll", "ItemNewSpecial", "Bestseller"]
     queryType = bookListQT[bookList.index(listType)]

@@ -16,7 +16,7 @@ def getweather(targetaddr):
         answer = "주소를 잘못 입력했습니다.\n\"서울 영등포구 여의도동\"\n 처럼 시,도 를 빼고 입력해주세요"
     else:
         wurl = 'https://api2.sktelecom.com/weather/current/hourly'
-        wappKey = '4fb6735c-5fcc-4c33-82df-cc09d54d7088'
+        wappKey = YOUR_APPKEY
         wheaders = {'Content-Type': 'application/json; charset=utf8', 'appKey' : wappKey} 
         wjson = '' 
 
@@ -43,7 +43,7 @@ def getweather(targetaddr):
 
         else:
             gurl = 'https://maps.googleapis.com/maps/api/geocode/json?'
-            gappKey = 'AIzaSyAT_XkeGeEhvPIUYUVUDJElB0xpepmyfSM'
+            gappKey = YOUR_GKEY 
             gparams = {"address" : addr, "key" : gappKey} 
             gheaders =  {'Content-Type': 'application/json; charset=utf8'} 
             gjson =  requests.get(gurl, headers=gheaders, params=gparams).json()
